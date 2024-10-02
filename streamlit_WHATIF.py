@@ -5,7 +5,7 @@ import io
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
-import pickle
+import joblib
 service_account_info = st.secrets["gcp_service_account"]
 credentials = service_account.Credentials.from_service_account_info(service_account_info)
 service = build('drive', 'v3', credentials=credentials)
@@ -25,35 +25,35 @@ def read_data(name, id):
 
 read_data('X_train', '1-habwWetJ3yK_nWqMNyXGZofhabBKJjp')
 
-# def read_joblib(name, id):
-#     file_id = id
-#     request = service.files().get_media(fileId=file_id)
-#     fh = io.BytesIO()
-#     downloader = MediaIoBaseDownload(fh, request)
-#     done = False
-#     while not done:
-#         status, done = downloader.next_chunk()
-#     fh.seek(0)
-#     globals()[name] = joblib.load(fh)  
-
-# read_joblib('model', '1GwgzMKgzXjGTmt4Cw4gEE9bPqHRzA-0j')
-# read_joblib('encoder','1JRuLZYBSIJD7yaHtzTN_sNbLZZ6B52Q6')
-
-def read_pickle_from_gdrive(name, file_id):
+def read_joblib(name, id):
+    file_id = id
     request = service.files().get_media(fileId=file_id)
     fh = io.BytesIO()
     downloader = MediaIoBaseDownload(fh, request)
     done = False
     while not done:
         status, done = downloader.next_chunk()
-    fh.seek(0)  # Set the file handle to the beginning
-    globals()[name] = pickle.load(fh)  # Load the pickled model
-    print(f"{name} loaded successfully.")
+    fh.seek(0)
+    globals()[name] = joblib.load(fh)  
+
+read_joblib('model', '1GwgzMKgzXjGTmt4Cw4gEE9bPqHRzA-0j')
+read_joblib('encoder','1JRuLZYBSIJD7yaHtzTN_sNbLZZ6B52Q6')
+
+# def read_pickle_from_gdrive(name, file_id):
+#     request = service.files().get_media(fileId=file_id)
+#     fh = io.BytesIO()
+#     downloader = MediaIoBaseDownload(fh, request)
+#     done = False
+#     while not done:
+#         status, done = downloader.next_chunk()
+#     fh.seek(0)  # Set the file handle to the beginning
+#     globals()[name] = pickle.load(fh)  # Load the pickled model
+#     print(f"{name} loaded successfully.")
 
 
-# Read the model
-read_pickle_from_gdrive('model', '1GwgzMKgzXjGTmt4Cw4gEE9bPqHRzA-0j')
-read_pickle_from_gdrive('encoder','1JRuLZYBSIJD7yaHtzTN_sNbLZZ6B52Q6')
+# # Read the model
+# read_pickle_from_gdrive('model', '1GwgzMKgzXjGTmt4Cw4gEE9bPqHRzA-0j')
+# read_pickle_from_gdrive('encoder','1JRuLZYBSIJD7yaHtzTN_sNbLZZ6B52Q6')
 
 
 # Load model and data
