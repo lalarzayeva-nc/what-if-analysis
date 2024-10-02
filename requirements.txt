@@ -5,4 +5,5 @@ streamlit
 google-auth-oauthlib  # For Google OAuth 2.0 authentication
 google-api-python-client  # For Google API (like Sheets, Drive)
 lightgbm == 4.5.0
+scikit-learn == 1.5.1
 
