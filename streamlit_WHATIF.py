@@ -6,7 +6,7 @@ import io
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
-
+import pickle
 service_account_info = st.secrets["gcp_service_account"]
 credentials = service_account.Credentials.from_service_account_info(service_account_info)
 service = build('drive', 'v3', credentials=credentials)
@@ -40,11 +40,27 @@ read_data('X_train', '1-habwWetJ3yK_nWqMNyXGZofhabBKJjp')
 # read_joblib('model', '1GwgzMKgzXjGTmt4Cw4gEE9bPqHRzA-0j')
 # read_joblib('encoder','1JRuLZYBSIJD7yaHtzTN_sNbLZZ6B52Q6')
 
+def read_pickle_from_gdrive(name, file_id):
+    request = service.files().get_media(fileId=file_id)
+    fh = io.BytesIO()
+    downloader = MediaIoBaseDownload(fh, request)
+    done = False
+    while not done:
+        status, done = downloader.next_chunk()
+    fh.seek(0)  # Set the file handle to the beginning
+    globals()[name] = pickle.load(fh)  # Load the pickled model
+    print(f"{name} loaded successfully.")
+
+
+# Read the model
+read_pickle_from_gdrive('model', '1GwgzMKgzXjGTmt4Cw4gEE9bPqHRzA-0j')
+read_pickle_from_gdrive('encoder','1JRuLZYBSIJD7yaHtzTN_sNbLZZ6B52Q6')
+
 
 # Load model and data
-model = joblib.load("https://raw.githubusercontent.com/lrzayeva97/what-if-analysis/main/model.pkl")
+# model = joblib.load(r"C:\Users\user\Desktop\Scoring_model_variable_updated\what if\model.pkl")
 # X_train = pd.read_csv(r"C:\Users\user\Desktop\Scoring_model_variable_updated\what if\data_for_pd_distribution.csv")
-encoder = joblib.load('https://raw.githubusercontent.com/lrzayeva97/what-if-analysis/main/encoder.pkl')
+# encoder = joblib.load(r'C:\Users\user\Desktop\Scoring_model_variable_updated\what if\encoder.pkl')
 
 
 def get_min_max_with_outlier_treatment(column):
