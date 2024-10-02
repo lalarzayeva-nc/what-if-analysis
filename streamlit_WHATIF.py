@@ -26,25 +26,25 @@ def read_data(name, id):
 
 read_data('X_train', '1-habwWetJ3yK_nWqMNyXGZofhabBKJjp')
 
-def read_joblib(name, id):
-    file_id = id
-    request = service.files().get_media(fileId=file_id)
-    fh = io.BytesIO()
-    downloader = MediaIoBaseDownload(fh, request)
-    done = False
-    while not done:
-        status, done = downloader.next_chunk()
-    fh.seek(0)
-    globals()[name] = joblib.load(fh)  
+# def read_joblib(name, id):
+#     file_id = id
+#     request = service.files().get_media(fileId=file_id)
+#     fh = io.BytesIO()
+#     downloader = MediaIoBaseDownload(fh, request)
+#     done = False
+#     while not done:
+#         status, done = downloader.next_chunk()
+#     fh.seek(0)
+#     globals()[name] = joblib.load(fh)  
 
-read_joblib('model', '1GwgzMKgzXjGTmt4Cw4gEE9bPqHRzA-0j')
-read_joblib('encoder','1JRuLZYBSIJD7yaHtzTN_sNbLZZ6B52Q6')
+# read_joblib('model', '1GwgzMKgzXjGTmt4Cw4gEE9bPqHRzA-0j')
+# read_joblib('encoder','1JRuLZYBSIJD7yaHtzTN_sNbLZZ6B52Q6')
 
 
 # Load model and data
-# model = joblib.load(r"C:\Users\user\Desktop\Scoring_model_variable_updated\what if\model.pkl")
+model = joblib.load("https://raw.githubusercontent.com/lrzayeva97/what-if-analysis/main/model.pkl")
 # X_train = pd.read_csv(r"C:\Users\user\Desktop\Scoring_model_variable_updated\what if\data_for_pd_distribution.csv")
-# encoder = joblib.load(r'C:\Users\user\Desktop\Scoring_model_variable_updated\what if\encoder.pkl')
+encoder = joblib.load('https://raw.githubusercontent.com/lrzayeva97/what-if-analysis/main/encoder.pkl')
 
 
 def get_min_max_with_outlier_treatment(column):
