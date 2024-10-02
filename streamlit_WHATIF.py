@@ -122,257 +122,284 @@ os_type = handle_none_value(os_type)
 
 # Generate number input fields for all listed variables with outlier treatment
 
+###################################################################################################################################################################################################
+
 # AED Sum Plan Name 2 Grp
 min_aed_plan_2, max_aed_plan_2 = get_min_max_with_outlier_treatment('aed_sum_plan_name_2_grp')
-default_value = int(min_aed_plan_2) if min_aed_plan_2 is not None else 0
-aed_sum_plan_name_2_grp = st.number_input(
+aed_sum_plan_name_2_grp_input = st.text_input(
     f'AED Sum Plan Name 2 Grp (Range: {min_aed_plan_2} to {max_aed_plan_2})',
-    min_value=int(min_aed_plan_2) if min_aed_plan_2 is not None else 0,
-    max_value=int(max_aed_plan_2) if max_aed_plan_2 is not None else 100,
-    step=1,
-    value=None
+    value=10
 )
+if aed_sum_plan_name_2_grp_input == '':
+    aed_sum_plan_name_2_grp = None
+else:
+    aed_sum_plan_name_2_grp = float(aed_sum_plan_name_2_grp_input)
 aed_sum_plan_name_2_grp = handle_none_value(aed_sum_plan_name_2_grp)
 
+# AED Max Instore####################################################################################################################
 
-# AED Max Instore
 min_aed_max_instore, max_aed_max_instore = get_min_max_with_outlier_treatment('aed_max_instore')
-default_value = int(min_aed_max_instore) if min_aed_max_instore is not None else 0
-aed_max_instore = st.number_input(
+aed_max_instore_input = st.text_input(
     f'AED Max Instore (Range: {min_aed_max_instore} to {max_aed_max_instore})',
-    min_value=int(min_aed_max_instore) if min_aed_max_instore is not None else 0,
-    max_value=int(max_aed_max_instore) if max_aed_max_instore is not None else 100,
-    step=1,
-    value=None
+    value=10
 )
+
+if aed_max_instore_input == '':
+    aed_max_instore = None
+else:
+    aed_max_instore = float(aed_max_instore_input)
+
 aed_max_instore = handle_none_value(aed_max_instore)
 
-# AED Sum NAN Card Type
+
+# AED Sum NAN Card Type#######################################################################################################################
 min_aed_nan_card_type, max_aed_nan_card_type = get_min_max_with_outlier_treatment('aed_sum_nan_card_type')
-default_value = int(min_aed_nan_card_type) if min_aed_nan_card_type is not None else 0
-aed_sum_nan_card_type = st.number_input(
+aed_sum_nan_card_type_input = st.text_input(
     f'AED Sum NAN Card Type (Range: {min_aed_nan_card_type} to {max_aed_nan_card_type})',
-    min_value=int(min_aed_nan_card_type) if min_aed_nan_card_type is not None else 0,
-    max_value=int(max_aed_nan_card_type) if max_aed_nan_card_type is not None else 100,
-    step=1,
-    value=None
+    value=str(10) 
 )
+
+if aed_sum_nan_card_type_input == '':
+    aed_sum_nan_card_type = None
+else:
+    aed_sum_nan_card_type = float(aed_sum_nan_card_type_input)
 aed_sum_nan_card_type = handle_none_value(aed_sum_nan_card_type)
 
-# AED Sum Debit Prepaid
+
+################################################# AED Sum Debit Prepaid###########################################################################################
+
 min_aed_debit_prepaid, max_aed_debit_prepaid = get_min_max_with_outlier_treatment('aed_sum_debit_prepaid')
-default_value = int(min_aed_debit_prepaid) if min_aed_debit_prepaid is not None else 0
-aed_sum_debit_prepaid = st.number_input(
+aed_sum_debit_prepaid_input = st.text_input(
     f'AED Sum Debit Prepaid (Range: {min_aed_debit_prepaid} to {max_aed_debit_prepaid})',
-    min_value=int(min_aed_debit_prepaid) if min_aed_debit_prepaid is not None else 0,
-    max_value=int(max_aed_debit_prepaid) if max_aed_debit_prepaid is not None else 100,
-    step=1,
-    value=None
+    value=str(10)  
 )
+if aed_sum_debit_prepaid_input == '':
+    aed_sum_debit_prepaid = None
+else:
+    aed_sum_debit_prepaid = float(aed_sum_debit_prepaid_input)
 aed_sum_debit_prepaid = handle_none_value(aed_sum_debit_prepaid)
+
+#######################################################################################################################
 
 # AED Sum Currency 1 Grp
 min_aed_currency_1, max_aed_currency_1 = get_min_max_with_outlier_treatment('aed_sum_currency_1grp')
-default_value = int(min_aed_currency_1) if min_aed_currency_1 is not None else 0
-aed_sum_currency_1grp = st.number_input(
+default_value = str(int(max_aed_currency_1)) if max_aed_currency_1 is not None else str(0)
+aed_sum_currency_1grp_input = st.text_input(
     f'AED Sum Currency 1grp (Range: {min_aed_currency_1} to {max_aed_currency_1})',
-    min_value=int(min_aed_currency_1) if min_aed_currency_1 is not None else 0,
-    max_value=int(max_aed_currency_1) if max_aed_currency_1 is not None else 100,
-    step=1,
-    value=None
+    value=default_value
 )
+if aed_sum_currency_1grp_input == '':
+    aed_sum_currency_1grp = None
+else:
+    aed_sum_currency_1grp = float(aed_sum_currency_1grp_input)
 aed_sum_currency_1grp = handle_none_value(aed_sum_currency_1grp)
 
 # AED Sum Merchant Merchant 5grp
 min_aed_merchant_5, max_aed_merchant_5 = get_min_max_with_outlier_treatment('aed_sum_merchant_merchant_5grp')
-default_value = int(min_aed_merchant_5) if min_aed_merchant_5 is not None else 0
-aed_sum_merchant_merchant_5grp = st.number_input(
+default_value = str(int(max_aed_merchant_5)) if max_aed_merchant_5 is not None else str(0)
+aed_sum_merchant_merchant_5grp_input = st.text_input(
     f'AED Sum Merchant Merchant 5grp (Range: {min_aed_merchant_5} to {max_aed_merchant_5})',
-    min_value=int(min_aed_merchant_5) if min_aed_merchant_5 is not None else 0,
-    max_value=int(max_aed_merchant_5) if max_aed_merchant_5 is not None else 100,
-    step=1,
-    value=None
+    value=default_value
 )
+if aed_sum_merchant_merchant_5grp_input == '':
+    aed_sum_merchant_merchant_5grp = None
+else:
+    aed_sum_merchant_merchant_5grp = float(aed_sum_merchant_merchant_5grp_input)
 aed_sum_merchant_merchant_5grp = handle_none_value(aed_sum_merchant_merchant_5grp)
 
 # AED Sum Merchant Merchant 6grp
 min_aed_merchant_6, max_aed_merchant_6 = get_min_max_with_outlier_treatment('aed_sum_merchant_merchant_6grp')
-default_value = int(min_aed_merchant_6) if min_aed_merchant_6 is not None else 0
-aed_sum_merchant_merchant_6grp = st.number_input(
+default_value = str(int(max_aed_merchant_6)) if max_aed_merchant_6 is not None else str(0)
+aed_sum_merchant_merchant_6grp_input = st.text_input(
     f'AED Sum Merchant Merchant 6grp (Range: {min_aed_merchant_6} to {max_aed_merchant_6})',
-    min_value=int(min_aed_merchant_6) if min_aed_merchant_6 is not None else 0,
-    max_value=int(max_aed_merchant_6) if max_aed_merchant_6 is not None else 100,
-    step=1,
-    value=None
+    value=default_value
 )
+if aed_sum_merchant_merchant_6grp_input == '':
+    aed_sum_merchant_merchant_6grp = None
+else:
+    aed_sum_merchant_merchant_6grp = float(aed_sum_merchant_merchant_6grp_input)
 aed_sum_merchant_merchant_6grp = handle_none_value(aed_sum_merchant_merchant_6grp)
 
 # Salary
 min_salary, max_salary = get_min_max_with_outlier_treatment('salary')
-default_value = int(min_salary) if min_salary is not None else 0
-salary = st.number_input(
+default_value = str(int(max_salary)) if max_salary is not None else str(0)
+salary_input = st.text_input(
     f'Salary (Range: {min_salary} to {max_salary})',
-    min_value=int(min_salary) if min_salary is not None else 0,
-    max_value=int(max_salary) if max_salary is not None else 100,
-    step=1,
-    value=None
+    value=default_value
 )
+if salary_input == '':
+    salary = None
+else:
+    salary = float(salary_input)
 salary = handle_none_value(salary)
 
 # N Installments Std
 min_n_installments_std, max_n_installments_std = get_min_max_with_outlier_treatment('n_installments_std')
-default_value = int(min_n_installments_std) if min_n_installments_std is not None else 0
-n_installments_std = st.number_input(
+default_value = str(int(max_n_installments_std)) if max_n_installments_std is not None else str(0)
+n_installments_std_input = st.text_input(
     f'N Installments Std (Range: {min_n_installments_std} to {max_n_installments_std})',
-    min_value=int(min_n_installments_std) if min_n_installments_std is not None else 0,
-    max_value=int(max_n_installments_std) if max_n_installments_std is not None else 100,
-    step=1,
-    value=None
+    value=default_value
 )
+if n_installments_std_input == '':
+    n_installments_std = None
+else:
+    n_installments_std = float(n_installments_std_input)
 n_installments_std = handle_none_value(n_installments_std)
 
 # AED Sum Grp3 Bin
 min_aed_grp3_bin, max_aed_grp3_bin = get_min_max_with_outlier_treatment('aed_sum_grp3_bin')
-default_value = int(min_aed_grp3_bin) if min_aed_grp3_bin is not None else 0
-aed_sum_grp3_bin = st.number_input(
+default_value = str(int(max_aed_grp3_bin)) if max_aed_grp3_bin is not None else str(0)
+aed_sum_grp3_bin_input = st.text_input(
     f'AED Sum Grp3 Bin (Range: {min_aed_grp3_bin} to {max_aed_grp3_bin})',
-    min_value=int(min_aed_grp3_bin) if min_aed_grp3_bin is not None else 0,
-    max_value=int(max_aed_grp3_bin) if max_aed_grp3_bin is not None else 100,
-    step=1,
-    value=None
+    value=default_value
 )
+if aed_sum_grp3_bin_input == '':
+    aed_sum_grp3_bin = None
+else:
+    aed_sum_grp3_bin = float(aed_sum_grp3_bin_input)
 aed_sum_grp3_bin = handle_none_value(aed_sum_grp3_bin)
 
 # Age
 min_age, max_age = get_min_max_with_outlier_treatment('age')
-default_value = int(min_age) if min_age is not None else 0
-age = st.number_input(
+#efault_value = str(int(max_age)) if max_age is not None else str(0)
+age_input = st.text_input(
     f'Age (Range: {min_age} to {max_age})',
-    min_value=int(min_age) if min_age is not None else 0,
-    max_value=int(max_age) if max_age is not None else 100,
-    step=1,
-    value=None
+    value=40
 )
+if age_input == '':
+    age = None
+else:
+    age = float(age_input)
 age = handle_none_value(age)
 
 # AED Sum Merchant Merchant 1grp
 min_aed_merchant_1, max_aed_merchant_1 = get_min_max_with_outlier_treatment('aed_sum_merchant_merchant_1grp')
-default_value = int(min_aed_merchant_1) if min_aed_merchant_1 is not None else 0
-aed_sum_merchant_merchant_1grp = st.number_input(
+default_value = str(int(max_aed_merchant_1)) if max_aed_merchant_1 is not None else str(0)
+aed_sum_merchant_merchant_1grp_input = st.text_input(
     f'AED Sum Merchant Merchant 1grp (Range: {min_aed_merchant_1} to {max_aed_merchant_1})',
-    min_value=int(min_aed_merchant_1) if min_aed_merchant_1 is not None else 0,
-    max_value=int(max_aed_merchant_1) if max_aed_merchant_1 is not None else 100,
-    step=1,
-    value=None
+    value=default_value
 )
+if aed_sum_merchant_merchant_1grp_input == '':
+    aed_sum_merchant_merchant_1grp = None
+else:
+    aed_sum_merchant_merchant_1grp = float(aed_sum_merchant_merchant_1grp_input)
 aed_sum_merchant_merchant_1grp = handle_none_value(aed_sum_merchant_merchant_1grp)
 
 # United Arab Emirates (UAE)
 min_uae, max_uae = get_min_max_with_outlier_treatment('United Arab Emirates (UAE)')
-default_value = int(min_uae) if min_uae is not None else 0
-uae_value = st.number_input(
+default_value = str(int(max_uae)) if max_uae is not None else str(0)
+uae_value_input = st.text_input(
     f'United Arab Emirates (UAE) (Range: {min_uae} to {max_uae})',
-    min_value=int(min_uae) if min_uae is not None else 0,
-    max_value=int(max_uae) if max_uae is not None else 100,
-    step=1,
-    value=None
+    value=default_value
 )
+if uae_value_input == '':
+    uae_value = None
+else:
+    uae_value = float(uae_value_input)
 uae_value = handle_none_value(uae_value)
 
 # AED Sum Product 1category
 min_aed_product_1category, max_aed_product_1category = get_min_max_with_outlier_treatment('aed_sum_product_1category')
-default_value = int(min_aed_product_1category) if min_aed_product_1category is not None else 0
-aed_sum_product_1category = st.number_input(
+default_value = str(int(max_aed_product_1category)) if max_aed_product_1category is not None else str(0)
+aed_sum_product_1category_input = st.text_input(
     f'AED Sum Product 1category (Range: {min_aed_product_1category} to {max_aed_product_1category})',
-    min_value=int(min_aed_product_1category) if min_aed_product_1category is not None else 0,
-    max_value=int(max_aed_product_1category) if max_aed_product_1category is not None else 100,
-    step=1,
-    value=None
+    value=default_value
 )
+if aed_sum_product_1category_input == '':
+    aed_sum_product_1category = None
+else:
+    aed_sum_product_1category = float(aed_sum_product_1category_input)
 aed_sum_product_1category = handle_none_value(aed_sum_product_1category)
 
 # AED Sum Merchant Merchant 4grp
 min_aed_merchant_4, max_aed_merchant_4 = get_min_max_with_outlier_treatment('aed_sum_merchant_merchant_4grp')
-default_value = int(min_aed_merchant_4) if min_aed_merchant_4 is not None else 0
-aed_sum_merchant_merchant_4grp = st.number_input(
+default_value = str(int(max_aed_merchant_4)) if max_aed_merchant_4 is not None else str(0)
+aed_sum_merchant_merchant_4grp_input = st.text_input(
     f'AED Sum Merchant Merchant 4grp (Range: {min_aed_merchant_4} to {max_aed_merchant_4})',
-    min_value=int(min_aed_merchant_4) if min_aed_merchant_4 is not None else 0,
-    max_value=int(max_aed_merchant_4) if max_aed_merchant_4 is not None else 100,
-    step=1,
-    value=None
+    value=default_value
 )
+if aed_sum_merchant_merchant_4grp_input == '':
+    aed_sum_merchant_merchant_4grp = None
+else:
+    aed_sum_merchant_merchant_4grp = float(aed_sum_merchant_merchant_4grp_input)
 aed_sum_merchant_merchant_4grp = handle_none_value(aed_sum_merchant_merchant_4grp)
 
 # AED Count Visa Unknown
 min_aed_visa_unknown, max_aed_visa_unknown = get_min_max_with_outlier_treatment('aed_count_visa_unknown')
-default_value = int(min_aed_visa_unknown) if min_aed_visa_unknown is not None else 0
-aed_count_visa_unknown = st.number_input(
+default_value = str(int(max_aed_visa_unknown)) if max_aed_visa_unknown is not None else str(0)
+aed_count_visa_unknown_input = st.text_input(
     f'AED Count Visa Unknown (Range: {min_aed_visa_unknown} to {max_aed_visa_unknown})',
-    min_value=int(min_aed_visa_unknown) if min_aed_visa_unknown is not None else 0,
-    max_value=int(max_aed_visa_unknown) if max_aed_visa_unknown is not None else 100,
-    step=1,
-    value=None
+    value=default_value
 )
+if aed_count_visa_unknown_input == '':
+    aed_count_visa_unknown = None
+else:
+    aed_count_visa_unknown = float(aed_count_visa_unknown_input)
 aed_count_visa_unknown = handle_none_value(aed_count_visa_unknown)
 
 # AED Sum Grp2 Bin
 min_aed_grp2_bin, max_aed_grp2_bin = get_min_max_with_outlier_treatment('aed_sum_grp2_bin')
-default_value = int(min_aed_grp2_bin) if min_aed_grp2_bin is not None else 0
-aed_sum_grp2_bin = st.number_input(
+default_value = str(int(max_aed_grp2_bin)) if max_aed_grp2_bin is not None else str(0)
+aed_sum_grp2_bin_input = st.text_input(
     f'AED Sum Grp2 Bin (Range: {min_aed_grp2_bin} to {max_aed_grp2_bin})',
-    min_value=int(min_aed_grp2_bin) if min_aed_grp2_bin is not None else 0,
-    max_value=int(max_aed_grp2_bin) if max_aed_grp2_bin is not None else 100,
-    step=1,
-    value=None
+    value=default_value
 )
+if aed_sum_grp2_bin_input == '':
+    aed_sum_grp2_bin = None
+else:
+    aed_sum_grp2_bin = float(aed_sum_grp2_bin_input)
 aed_sum_grp2_bin = handle_none_value(aed_sum_grp2_bin)
 
 # AED Sum Grp1 Bin
 min_aed_grp1_bin, max_aed_grp1_bin = get_min_max_with_outlier_treatment('aed_sum_grp1_bin')
-default_value = int(min_aed_grp1_bin) if min_aed_grp1_bin is not None else 0
-aed_sum_grp1_bin = st.number_input(
+default_value = str(int(max_aed_grp1_bin)) if max_aed_grp1_bin is not None else str(0)
+aed_sum_grp1_bin_input = st.text_input(
     f'AED Sum Grp1 Bin (Range: {min_aed_grp1_bin} to {max_aed_grp1_bin})',
-    min_value=int(min_aed_grp1_bin) if min_aed_grp1_bin is not None else 0,
-    max_value=int(max_aed_grp1_bin) if max_aed_grp1_bin is not None else 100,
-    step=1,
-    value=None
+    value=default_value
 )
+if aed_sum_grp1_bin_input == '':
+    aed_sum_grp1_bin = None
+else:
+    aed_sum_grp1_bin = float(aed_sum_grp1_bin_input)
 aed_sum_grp1_bin = handle_none_value(aed_sum_grp1_bin)
 
 # Quantity Sum
 min_quantity_sum, max_quantity_sum = get_min_max_with_outlier_treatment('quantity_sum')
-default_value = int(min_quantity_sum) if min_quantity_sum is not None else 0
-quantity_sum = st.number_input(
+default_value = str(int(max_quantity_sum)) if max_quantity_sum is not None else str(0)
+quantity_sum_input = st.text_input(
     f'Quantity Sum (Range: {min_quantity_sum} to {max_quantity_sum})',
-    min_value=int(min_quantity_sum) if min_quantity_sum is not None else 0,
-    max_value=int(max_quantity_sum) if max_quantity_sum is not None else 100,
-    step=1,
-    value=None
+    value=default_value
 )
+if quantity_sum_input == '':
+    quantity_sum = None
+else:
+    quantity_sum = float(quantity_sum_input)
 quantity_sum = handle_none_value(quantity_sum)
 
 # AED Sum Merchant Merchant 3grp
 min_aed_merchant_3, max_aed_merchant_3 = get_min_max_with_outlier_treatment('aed_sum_merchant_merchant_3grp')
-default_value = int(min_aed_merchant_3) if min_aed_merchant_3 is not None else 0
-aed_sum_merchant_merchant_3grp = st.number_input(
+default_value = str(int(max_aed_merchant_3)) if max_aed_merchant_3 is not None else str(0)
+aed_sum_merchant_merchant_3grp_input = st.text_input(
     f'AED Sum Merchant Merchant 3grp (Range: {min_aed_merchant_3} to {max_aed_merchant_3})',
-    min_value=int(min_aed_merchant_3) if min_aed_merchant_3 is not None else 0,
-    max_value=int(max_aed_merchant_3) if max_aed_merchant_3 is not None else 100,
-    step=1,
-    value=None
+    value=default_value
 )
+if aed_sum_merchant_merchant_3grp_input == '':
+    aed_sum_merchant_merchant_3grp = None
+else:
+    aed_sum_merchant_merchant_3grp = float(aed_sum_merchant_merchant_3grp_input)
 aed_sum_merchant_merchant_3grp = handle_none_value(aed_sum_merchant_merchant_3grp)
 
 # Count of Prepaid Installments
 min_prepaid_installments, max_prepaid_installments = get_min_max_with_outlier_treatment('count_of_prepaid_installments')
-default_value = int(min_prepaid_installments) if min_prepaid_installments is not None else 0
-count_of_prepaid_installments = st.number_input(
+default_value = str(int(max_prepaid_installments)) if max_prepaid_installments is not None else str(0)
+count_of_prepaid_installments_input = st.text_input(
     f'Count of Prepaid Installments (Range: {min_prepaid_installments} to {max_prepaid_installments})',
-    min_value=int(min_prepaid_installments) if min_prepaid_installments is not None else 0,
-    max_value=int(max_prepaid_installments) if max_prepaid_installments is not None else 100,
-    step=1,
-    value=None
+    value=default_value
 )
+if count_of_prepaid_installments_input == '':
+    count_of_prepaid_installments = None
+else:
+    count_of_prepaid_installments = float(count_of_prepaid_installments_input)
 count_of_prepaid_installments = handle_none_value(count_of_prepaid_installments)
 
 
