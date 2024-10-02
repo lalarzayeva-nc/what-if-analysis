@@ -6,6 +6,10 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 import joblib
+import plotly.express as px
+import plotly.graph_objects as go
+
+
 service_account_info = st.secrets["gcp_service_account"]
 credentials = service_account.Credentials.from_service_account_info(service_account_info)
 service = build('drive', 'v3', credentials=credentials)
@@ -459,6 +463,41 @@ st.write(f'Prediction: {"Risky customer" if prediction[0] == 1 else "Creditworth
 st.write(f'Probability of being Risky customer: {prediction_proba[0][1] * 100:.2f}%')
 #st.write("Final Input Data for Prediction")
 st.write(input_df)
+
+# Assuming X_train is your training dataset and prediction_proba holds prediction results
+X_train['pd_percentage'] = X_train['pd'] * 100
+fig = px.histogram(X_train, x="pd_percentage", nbins=20, title="Distribution of PD (as Percentage)")
+fig.update_layout(xaxis_title="PD (%)", yaxis_title="Count")
+
+# Customize the x-axis
+fig.update_xaxes(
+    tickmode='linear',  
+    tick0=10,  
+    dtick=8,  
+    tickformat=".0f",  
+    ticksuffix="%"
+)
+
+# Predicted PD percentage
+predicted_pd_percentage = prediction_proba[0][1] * 100
+
+# Add the prediction probability marker to the chart
+fig.add_trace(go.Scatter(
+    x=[predicted_pd_percentage], 
+    y=[0],  
+    mode='markers+text',
+    name='Prediction Probability',
+    text=[f'Prediction: {predicted_pd_percentage:.2f}%'],
+    textposition='top center',
+    marker=dict(color='red', size=10, symbol='circle')
+))
+
+# Streamlit app to display the Plotly figure
+st.title("What-If Analysis for PD Predictions")
+st.plotly_chart(fig)
+
+# You can also add more Streamlit components for inputs or additional details
+#st.write(f"Predicted PD as Percentage: {predicted_pd_percentage:.2f}%")
 
 
 
